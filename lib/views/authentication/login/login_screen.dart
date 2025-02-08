@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../widgets/custom_text_field.dart';
 
 class LoginScreen extends StatelessWidget {
+  static const String routeName = "loginScreen";
    const LoginScreen({super.key});
   @override
   Widget build(BuildContext context) {
@@ -68,7 +69,6 @@ class LoginScreen extends StatelessWidget {
             SizedBox(height: 20.h),
             TextButton(
               onPressed: () {
-                // Navigate to login screen
               },
               child: Text('Already have an account? Log in'),
             ),
