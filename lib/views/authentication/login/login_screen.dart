@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+import '../widgets/custom_text_field.dart';
 
 class LoginScreen extends StatelessWidget {
+   const LoginScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -9,9 +13,9 @@ class LoginScreen extends StatelessWidget {
         title: Text('Sign Up'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding:  REdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
               'Create Your Account',
@@ -22,55 +26,46 @@ class LoginScreen extends StatelessWidget {
               'Join our community and start your journey!',
               style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.normal),
             ),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Enter your full name',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 10),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Email Address',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 10),
-            TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: 'Password',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 10),
+          CustomTextField(title: 'Full Name', labelText: 'Enter your full name'),
+            SizedBox(height: 10.h),
+          CustomTextField(title: 'Email Address', labelText: 'Enter your email address'),
+            SizedBox(height: 10.h),
+          CustomTextField(title: 'Password', labelText: 'Enter a strong password'),
+            SizedBox(height: 10.h ),
+            
+            SizedBox(height: 10.h),
             Row(
               children: <Widget>[
                 Text('Gender:'),
-                SizedBox(width: 10),
+                SizedBox(width: 10.w),
                 Radio(value: 'Male', groupValue: 'Gender', onChanged: (value) {}),
                 Text('Male'),
                 Radio(value: 'Female', groupValue: 'Gender', onChanged: (value) {}),
                 Text('Female'),
               ],
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 20.h),
             ElevatedButton(
               onPressed: () {
                 // Handle sign up logic
               },
               child: Text('Sign Up'),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 10.h),
             Text('or'),
-            SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
+            SizedBox(height: 10.h),
+            InkWell(
+              onTap: () {
                 // Handle Google sign up logic
               },
-              child: Text('Sign up with Gmail'),
+              child: Row(
+                children: [ SvgPicture.asset('assets/svg/google.svg'),
+                SizedBox(width: 8.w),
+                  Text('Continue with Google'),
+                ],
+              ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 20.h),
             TextButton(
               onPressed: () {
                 // Navigate to login screen
