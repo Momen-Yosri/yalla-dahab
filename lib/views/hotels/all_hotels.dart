@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 
-class HotelPage extends StatelessWidget {
+class AllAvailableHotelsPage extends StatelessWidget {
+  AllAvailableHotelsPage({super.key});
   static const String routeName = "HotelPage";
   final List<Map<String, dynamic>> hotels = List.generate(7, (index) => {
         "name": "Heden golf",

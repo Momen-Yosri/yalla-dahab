@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yalla_dahab/views/authentication/login/login_screen.dart';
+import 'package:yalla_dahab/views/hotels/hotel_deitals_screen.dart';
 
 import 'views/authentication/register/register_screen.dart';
 import 'views/hotels/all_hotels.dart';
@@ -25,11 +26,12 @@ class MyApp extends StatelessWidget {
           
           debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      initialRoute:HotelPage.routeName,
+      initialRoute:HotelDetailsPage.routeName,
       routes: {
         LoginScreen.routeName: (context) => const LoginScreen(),
         RegisterScreen.routeName: (context) => const RegisterScreen(),
-        HotelPage.routeName: (context) =>  HotelPage(),
+        AllAvailableHotelsPage.routeName: (context) =>  AllAvailableHotelsPage(),
+        HotelDetailsPage.routeName: (context) =>  HotelDetailsPage(),
       },
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
