@@ -1,80 +1,129 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-import '../widgets/custom_text_field.dart';
+class LoginScreenView extends StatelessWidget {
+  static const String routeName = "login_view";
+  const LoginScreenView({super.key});
 
-class LoginScreen extends StatelessWidget {
-  static const String routeName = "loginScreen";
-   const LoginScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Sign Up'),
-      ),
+        return Scaffold(
       body: Padding(
-        padding:  REdgeInsets.all(16.0),
+        padding: EdgeInsets.symmetric(horizontal: 24.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
             Text(
-              'Create Your Account',
-              style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600),
+              "Login",
+              style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 20.h),
-             Text(
-              'Join our community and start your journey!',
-              style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.normal),
+            SizedBox(height: 8.h),
+            Text(
+              "Welcome back!",
+              style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
             ),
-          CustomTextField(title: 'Full Name', labelText: 'Enter your full name'),
-            SizedBox(height: 10.h),
-          CustomTextField(title: 'Email Address', labelText: 'Enter your email address'),
-            SizedBox(height: 10.h),
-          CustomTextField(title: 'Password', labelText: 'Enter a strong password'),
-            SizedBox(height: 10.h ),
-            
-            SizedBox(height: 10.h),
-            Row(
-              children: <Widget>[
-                Text('Gender:'),
-                SizedBox(width: 10.w),
-                Radio(value: 'Male', groupValue: 'Gender', onChanged: (value) {}),
-                Text('Male'),
-                Radio(value: 'Female', groupValue: 'Gender', onChanged: (value) {}),
-                Text('Female'),
-              ],
+            SizedBox(height: 4.h),
+            Text(
+              "Please enter your details to log in.",
+              style: TextStyle(fontSize: 14.sp),
             ),
-            SizedBox(height: 20.h),
-            ElevatedButton(
-              onPressed: () {
-                // Handle sign up logic
-              },
-              child: Text('Sign Up'),
-            ),
-            SizedBox(height: 10.h),
-            Text('or'),
-            SizedBox(height: 10.h),
-            InkWell(
-              onTap: () {
-                // Handle Google sign up logic
-              },
-              child: Row(
-                children: [ SvgPicture.asset('assets/svg/google.svg'),
-                SizedBox(width: 8.w),
-                  Text('Continue with Google'),
-                ],
+            SizedBox(height: 24.h),
+            Text("Email", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.sp)),
+            SizedBox(height: 6.h),
+            TextField(
+              decoration: InputDecoration(
+                hintText: "Enter your email address",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.r),
+                ),
               ),
             ),
-            SizedBox(height: 20.h),
-            TextButton(
-              onPressed: () {
-              },
-              child: Text('Already have an account? Log in'),
+            SizedBox(height: 16.h),
+            Text("Password", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.sp)),
+            SizedBox(height: 6.h),
+            TextField(
+              obscureText: true,
+              decoration: InputDecoration(
+                hintText: "Enter your password",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.r),
+                ),
+              ),
+            ),
+            SizedBox(height: 10.h),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () {},
+                child: Text("Forgot password?", style: TextStyle(fontSize: 12.sp)),
+              ),
+            ),
+            SizedBox(height: 16.h),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  padding: EdgeInsets.symmetric(vertical: 14.h),
+                ),
+                onPressed: () {},
+                child: Text(
+                  "Login",
+                  style: TextStyle(fontSize: 16.sp, color: Colors.white),
+                ),
+              ),
+            ),
+            SizedBox(height: 16.h),
+            Center(child: Text("or", style: TextStyle(fontSize: 14.sp))),
+            SizedBox(height: 16.h),
+            GestureDetector(
+              onTap: () {},
+              child: Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(vertical: 12.h),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(8.r),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.network(
+                      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png",
+                      height: 24.h,
+                    ),
+                    SizedBox(width: 8.w),
+                    Text("Continue with Google", style: TextStyle(fontSize: 14.sp)),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: 16.h),
+            Center(
+              child: GestureDetector(
+                onTap: () {},
+                child: RichText(
+                  text: TextSpan(
+                    style: TextStyle(color: Colors.black, fontSize: 14.sp),
+                    children: [
+                      TextSpan(text: "Don't have an account? "),
+                      TextSpan(
+                        text: "Sign up",
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
           ],
         ),
       ),
     );
   }
+
 }
