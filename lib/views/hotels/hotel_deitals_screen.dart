@@ -37,7 +37,7 @@ class HotelDetailsPage extends StatelessWidget {
             // Main Image
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.network(mainImage, width: double.infinity, height: 200, fit: BoxFit.cover),
+              child: Image.asset(mainImage, width: double.infinity, height: 200, fit: BoxFit.cover),
             ),
             SizedBox(height: 10),
 
@@ -47,7 +47,7 @@ class HotelDetailsPage extends StatelessWidget {
               children: thumbnails.map((image) {
                 return ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: Image.network(image, width: 80, height: 60, fit: BoxFit.cover),
+                  child: Image.asset(image, width: 80, height: 60, fit: BoxFit.cover),
                 );
               }).toList(),
             ),

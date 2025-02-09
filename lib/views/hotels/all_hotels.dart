@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 class AllAvailableHotelsPage extends StatelessWidget {
@@ -7,7 +8,7 @@ class AllAvailableHotelsPage extends StatelessWidget {
   final List<Map<String, dynamic>> hotels = List.generate(7, (index) => {
         "name": "Heden golf",
         "rating": 3.9,
-        "image": "assets/images/hotel_demo.png", // Replace with actual image
+        "image": "assets/images/hotel_demo.png",
         "description": "Set in landscaped gardens overlooking the ..."
       });
 
@@ -25,21 +26,21 @@ class AllAvailableHotelsPage extends StatelessWidget {
         elevation: 0,
       ),
       body: ListView.builder(
-        padding: EdgeInsets.all(10),
+        padding: REdgeInsets.all(10),
         itemCount: hotels.length,
         itemBuilder: (context, index) {
           final hotel = hotels[index];
           return Card(
             color: Colors.transparent,
             elevation: 0,
-            margin: EdgeInsets.symmetric(vertical: 5),
+            margin: REdgeInsets.symmetric(vertical: 5.h),
             child: ListTile(
               leading: ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: Image.network(
+                borderRadius: BorderRadius.circular(8.r),
+                child: Image.asset(
                   hotel["image"],
-                  width: 60,
-                  height: 60,
+                  width: 60.w,
+                  height: 60.h,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -52,8 +53,8 @@ class AllAvailableHotelsPage extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.star, color: Colors.amber, size: 16),
-                      SizedBox(width: 4),
+                      Icon(Icons.star, color: Colors.amber, size: 16.sp),
+                      SizedBox(width: 4.w),
                       Text(hotel["rating"].toString()),
                     ],
                   ),

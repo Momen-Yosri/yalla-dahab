@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'widgets/custom_navigation_bar.dart';
 
@@ -7,7 +8,7 @@ class HomeScreen extends StatelessWidget {
    HomeScreen({super.key});
   final List<Map<String, dynamic>> popularPlaces = [
     {
-      "name": "Retac Qunay Resort & Spa",
+      "name": "Retac Qunay ",
       "image": "assets/images/hotel_list1.jpg",
       "rating": 4.8
     },
@@ -17,14 +18,14 @@ class HomeScreen extends StatelessWidget {
       "rating": 4.1
     },
     {
-      "name": "Alley Palace",
+      "name": "Sheraton",
       "image": "assets/images/hotel_list3.jpg",
-      "rating": 4.1
+      "rating": 4.3
     },
     {
-      "name": "Alley Palace",
+      "name": "semiramis",
       "image": "assets/images/hotel_list4.jpg",
-      "rating": 4.1
+      "rating": 4.5
     },
   ];
 
@@ -49,13 +50,13 @@ class HomeScreen extends StatelessWidget {
                     backgroundColor: Colors.grey[300],
                     child: Icon(Icons.person, size: 40, color: Colors.white),
                   ),
-                  SizedBox(height: 8),
-                  Text("Hi, (User name)", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
+                  SizedBox(height: 8.h),
+                  Text("Hi, (User name)", style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500)),
                 ],
               ),
             ),
 
-            SizedBox(height: 16),
+            SizedBox(height: 16.h),
 
             // Search Bar
             Container(
@@ -74,7 +75,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height: 16),
+            SizedBox(height: 16.h),
 
             // Category Filters
             Row(
@@ -98,7 +99,7 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
 
-            SizedBox(height: 8),
+            SizedBox(height: 8.h),
 
             // Popular Places Grid
             GridView.builder(
@@ -127,14 +128,14 @@ class HomeScreen extends StatelessWidget {
     return Column(
       children: [
         Container(
-          padding: EdgeInsets.all(10),
+          padding: REdgeInsets.all(10),
           decoration: BoxDecoration(
             color: isSelected ? Colors.blue : Colors.grey[200],
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(8.r),
           ),
           child: Icon(icon, color: isSelected ? Colors.white : Colors.black),
         ),
-        SizedBox(height: 4),
+        SizedBox(height: 4.h),
         Text(label, style: TextStyle(fontSize: 12)),
       ],
     );
@@ -145,28 +146,28 @@ class HomeScreen extends StatelessWidget {
     return Stack(
       children: [
         ClipRRect(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(12.r),
           child: Image.asset(imageUrl, width: double.infinity, height: double.infinity, fit: BoxFit.cover),
         ),
         Positioned(
-          bottom: 10,
-          left: 10,
-          right: 10,
+          bottom: 10.h,
+          left: 10.w,
+          right: 10.w,
           child: Container(
-            padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+            padding: REdgeInsets.symmetric(vertical: 4.r, horizontal: 8.h),
             decoration: BoxDecoration(
               color: Colors.black.withOpacity(0.6),
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(8.r),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(name, style: TextStyle(color: Colors.white, fontSize: 12)),
+                Text(name, style: TextStyle(color: Colors.white, fontSize: 12.sp)),
                 Row(
                   children: [
                     Icon(Icons.star, color: Colors.amber, size: 14),
-                    SizedBox(width: 4),
-                    Text(rating.toString(), style: TextStyle(color: Colors.white, fontSize: 12)),
+                    SizedBox(width: 4.w),
+                    Text(rating.toString(), style: TextStyle(color: Colors.white, fontSize: 12.sp)),
                   ],
                 ),
               ],
