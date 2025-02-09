@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yalla_dahab/views/authentication/login/login_screen.dart';
+import 'package:yalla_dahab/views/home/home_screen.dart';
 import 'package:yalla_dahab/views/hotels/hotel_deitals_screen.dart';
 
 import 'views/authentication/register/register_screen.dart';
@@ -23,12 +24,13 @@ class MyApp extends StatelessWidget {
       builder: (_ , child) {
         return  MaterialApp(
           debugShowCheckedModeBanner: false,
-      initialRoute:HotelDetailsPage.routeName,
+      initialRoute:HomeScreen.routeName,
       routes: {
         LoginScreen.routeName: (context) => const LoginScreen(),
         RegisterScreen.routeName: (context) => const RegisterScreen(),
         AllAvailableHotelsPage.routeName: (context) =>  AllAvailableHotelsPage(),
         HotelDetailsPage.routeName: (context) =>  HotelDetailsPage(),
+        HomeScreen.routeName: (context) =>  HomeScreen(),
       },
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,

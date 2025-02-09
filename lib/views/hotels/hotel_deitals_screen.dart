@@ -7,14 +7,14 @@ import 'package:flutter/material.dart';
 class HotelDetailsPage extends StatelessWidget {
    HotelDetailsPage({super. key}) ;
   static const String routeName = "hotelDetailsPage";
-  final String mainImage = "assets/images/mainHotelImage.png"; // Replace with actual image
+  final String mainImage = "assets/images/mainHotelImage.png"; 
   final List<String> thumbnails = [
     "assets/images/hotel1.png",
     "assets/images/hotel2.png",
     "assets/images/hotel3.png",
     "assets/images/hotel4.png",
    
-  ]; // Replace with actual images
+  ]; 
 
   @override
   Widget build(BuildContext context) {
