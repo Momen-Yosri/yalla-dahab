@@ -7,14 +7,14 @@ import 'package:flutter/material.dart';
 class HotelDetailsPage extends StatelessWidget {
    HotelDetailsPage({super. key}) ;
   static const String routeName = "hotelDetailsPage";
-  final String mainImage = "assets/images/mainHotelImage.png"; // Replace with actual image
+  final String mainImage = "assets/images/mainHotelImage.png"; 
   final List<String> thumbnails = [
     "assets/images/hotel1.png",
     "assets/images/hotel2.png",
     "assets/images/hotel3.png",
     "assets/images/hotel4.png",
    
-  ]; // Replace with actual images
+  ]; 
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class HotelDetailsPage extends StatelessWidget {
             // Main Image
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.network(mainImage, width: double.infinity, height: 200, fit: BoxFit.cover),
+              child: Image.asset(mainImage, width: double.infinity, height: 200, fit: BoxFit.cover),
             ),
             SizedBox(height: 10),
 
@@ -47,7 +47,7 @@ class HotelDetailsPage extends StatelessWidget {
               children: thumbnails.map((image) {
                 return ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: Image.network(image, width: 80, height: 60, fit: BoxFit.cover),
+                  child: Image.asset(image, width: 80, height: 60, fit: BoxFit.cover),
                 );
               }).toList(),
             ),
