@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+import '../widgets/custom_text_field.dart';
 
 class LoginScreenView extends StatelessWidget {
   static const String routeName = "login_view";
@@ -29,28 +32,10 @@ class LoginScreenView extends StatelessWidget {
               style: TextStyle(fontSize: 14.sp),
             ),
             SizedBox(height: 24.h),
-            Text("Email", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.sp)),
-            SizedBox(height: 6.h),
-            TextField(
-              decoration: InputDecoration(
-                hintText: "Enter your email address",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.r),
-                ),
-              ),
-            ),
-            SizedBox(height: 16.h),
-            Text("Password", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.sp)),
-            SizedBox(height: 6.h),
-            TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                hintText: "Enter your password",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.r),
-                ),
-              ),
-            ),
+            CustomTextField(title: 'Full Name', labelText: 'Enter your full name'),
+            SizedBox(height: 10.h),
+          CustomTextField(title: 'Email Address', labelText: 'Enter your email address'),
+            SizedBox(height: 10.h),
             SizedBox(height: 10.h),
             Align(
               alignment: Alignment.centerRight,
@@ -89,8 +74,7 @@ class LoginScreenView extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.network(
-                      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png",
+                    SvgPicture.asset('assets/svg/google.svg',
                       height: 24.h,
                     ),
                     SizedBox(width: 8.w),
