@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:yalla_dahab/core/style/app_colors.dart';
 
 
 class SettingsScreen extends StatefulWidget {
@@ -53,7 +54,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             // Personal Information Section
             sectionTitle("Personal Information"),
             settingsTile(
-              icon: FontAwesomeIcons.solidHeart,
+              icon: FontAwesomeIcons.pencil,
               title: "Edit Profile",
               onTap: () {},
             ),
@@ -68,7 +69,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
             // Logout Section
             settingsTile(
-              icon: FontAwesomeIcons.solidHeart,
+              icon: FontAwesomeIcons.signOutAlt,
               title: "Log Out",
               subtitle: "Sign out of your account",
               onTap: () {},
@@ -106,6 +107,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return ListTile(
       title: Text("Enable Dark Mode", style: TextStyle(fontSize: 16.sp)),
       trailing: Switch(
+        activeColor: AppColors.primary,
         value: isDarkMode,
         onChanged: (value) {
           setState(() {
