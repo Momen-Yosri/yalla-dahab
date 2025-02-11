@@ -8,6 +8,7 @@ import 'package:yalla_dahab/views/settings/edit_profile_screen.dart';
 
 import 'views/authentication/login/login_screen.dart';
 import 'views/hotels/all_hotels.dart';
+import 'views/trips/trip_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
       builder: (_ , child) {
         return  MaterialApp(
           debugShowCheckedModeBanner: false,
-      initialRoute:HospitalProfileScreen.routeName,
+      initialRoute:TripDetailsScreen.routeName,
       routes: {
         RegisterScreen.routeName: (context) => const RegisterScreen(),
         LoginScreenView.routeName: (context) => const LoginScreenView(),
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         HotelDetailsPage.routeName: (context) =>  HotelDetailsPage(),
         EditProfileScreen.routeName: (context) =>  EditProfileScreen(),
         HospitalProfileScreen.routeName: (context) =>  HospitalProfileScreen(),
+        TripDetailsScreen.routeName: (context) =>  TripDetailsScreen(),
       },
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
