@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yalla_dahab/views/authentication/register/register_screen.dart';
 import 'package:yalla_dahab/views/home/home_screen.dart';
+import 'package:yalla_dahab/views/hospital/hospital_profile_screen.dart';
 import 'package:yalla_dahab/views/hotels/hotel_deitals_screen.dart';
 import 'package:yalla_dahab/views/settings/edit_profile_screen.dart';
 
 import 'views/authentication/login/login_screen.dart';
 import 'views/hotels/all_hotels.dart';
+import 'views/restaurant/resturtrant_deitals.dart';
+import 'views/settings/settings_screen.dart';
+import 'views/trips/trip_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +28,7 @@ class MyApp extends StatelessWidget {
       builder: (_ , child) {
         return  MaterialApp(
           debugShowCheckedModeBanner: false,
-      initialRoute:LoginScreenView.routeName,
+      initialRoute:SettingsScreen.routeName,
       routes: {
         RegisterScreen.routeName: (context) => const RegisterScreen(),
         LoginScreenView.routeName: (context) => const LoginScreenView(),
@@ -32,6 +36,10 @@ class MyApp extends StatelessWidget {
         AllAvailableHotelsPage.routeName: (context) =>  AllAvailableHotelsPage(),
         HotelDetailsPage.routeName: (context) =>  HotelDetailsPage(),
         EditProfileScreen.routeName: (context) =>  EditProfileScreen(),
+        HospitalProfileScreen.routeName: (context) =>  HospitalProfileScreen(),
+        TripDetailsScreen.routeName: (context) =>  TripDetailsScreen(),
+        RestaurantDetailScreen.routeName: (context) =>  RestaurantDetailScreen(),
+        SettingsScreen.routeName: (context) => SettingsScreen(),
       },
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,

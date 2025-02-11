@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
 
@@ -94,12 +95,20 @@ class HotelDetailsPage extends StatelessWidget {
             // Social Media Icons
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(icon: Icon(Icons.facebook_sharp), onPressed: () {}),
-                IconButton(icon: Icon(Icons.facebook_sharp), onPressed: () {}),
-                IconButton(icon: Icon(Icons.facebook_sharp), onPressed: () {}),
-       
-              ],
+               children: [
+    IconButton(
+      icon: Icon(FontAwesomeIcons.facebook),
+      onPressed: () {},
+    ),
+    IconButton(
+      icon: Icon(FontAwesomeIcons.instagram),
+      onPressed: () {},
+    ),
+    IconButton(
+      icon: Icon(FontAwesomeIcons.twitter),
+      onPressed: () {},
+    ),
+  ],
             ),
           ],
         ),

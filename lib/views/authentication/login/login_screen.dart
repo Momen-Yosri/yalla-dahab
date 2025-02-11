@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../widgets/custom_text_field.dart';
-
 class LoginScreenView extends StatelessWidget {
   static const String routeName = "login_view";
   const LoginScreenView({super.key});
