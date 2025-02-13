@@ -67,31 +67,43 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ],
     ),
             SizedBox(height: 20.h),
-            ElevatedButton(
-              onPressed: () {
-                // Handle sign up logic
-              },
-              child: Text('Sign Up'),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle sign up logic
+                },
+                child: Text('Sign Up'),
+              ),
             ),
             SizedBox(height: 10.h),
-            Text('or'),
+            Center(child: Text('or')),
             SizedBox(height: 10.h),
             InkWell(
               onTap: () {
                 // Handle Google sign up logic
               },
-              child: Row(
-                children: [ SvgPicture.asset('assets/svg/google.svg'),
-                SizedBox(width: 8.w),
-                  Text('Continue with Google'),
-                ],
-              ),
+              child:  Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset('assets/svg/google.svg',
+                      height: 24.h,
+                    ),
+                    SizedBox(width: 8.w),
+                    Text("Continue with Google", style: TextStyle(fontSize: 14.sp)),
+                  ],
+                ),
             ),
             SizedBox(height: 20.h),
-            TextButton(
-              onPressed: () {
-              },
-              child: Text('Already have an account? Log in'),
+            Row(mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Already have an account?'),
+                TextButton(
+                  onPressed: () {
+                  },
+                  child: Text(' Log in'),
+                ),
+              ],
             ),
           ],
         ),

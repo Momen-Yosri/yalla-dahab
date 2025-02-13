@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:yalla_dahab/views/home/home_screen.dart';
 
 import '../widgets/custom_text_field.dart';
 class LoginScreenView extends StatelessWidget {
@@ -51,7 +52,9 @@ class LoginScreenView extends StatelessWidget {
                   backgroundColor: Colors.blue,
                   padding: EdgeInsets.symmetric(vertical: 14.h),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamedAndRemoveUntil(context,  HomeScreen.routeName, (Route<dynamic> route) => false);
+                },
                 child: Text(
                   "Login",
                   style: TextStyle(fontSize: 16.sp, color: Colors.white),
@@ -72,6 +75,7 @@ class LoginScreenView extends StatelessWidget {
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SvgPicture.asset('assets/svg/google.svg',
                       height: 24.h,
