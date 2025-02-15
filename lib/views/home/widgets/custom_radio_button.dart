@@ -25,13 +25,14 @@ class _CustomRadioButtonState extends State<CustomRadioButton> {
         Radio(
           value: widget.value,
           groupValue: widget.selectedGender,
+          fillColor: MaterialStateProperty.all(Colors.blueAccent),
           onChanged: (newValue) {
             if (newValue != null) {
               widget.onChanged?.call(newValue.toString());  // Call the callback
             }
           },
         ),
-        Text(widget.value, style: TextStyle(fontSize: 14.sp)),
+        Text(widget.value, style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 16.sp,fontWeight: FontWeight.normal ),),
         SizedBox(width: 10.w),
       ],
     );

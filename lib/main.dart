@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         builder: (_, child) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            initialRoute: LoginScreenView.routeName,
+            initialRoute: HomeScreen.routeName,
             routes: {
               RegisterScreen.routeName: (context) => const RegisterScreen(),
               LoginScreenView.routeName: (context) => const LoginScreenView(),
@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
                   RestaurantDetailScreen(),
               SettingsScreen.routeName: (context) => SettingsScreen(),
             },
-            theme: MyThemeData.lightTheme,
+            theme: MyThemeData.darkTheme,
             darkTheme: MyThemeData.darkTheme,
             themeMode: provider.currentThemeMode,
            

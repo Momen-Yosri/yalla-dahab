@@ -14,7 +14,7 @@ class MyThemeData {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
-        fixedSize:MaterialStateProperty.all(Size(150.w, 30.h)) ,
+        fixedSize:MaterialStateProperty.all(Size(358.w, 40.h)) ,
         backgroundColor: MaterialStateProperty.all(AppColors.primary),
         shape: MaterialStateProperty.all(
           RoundedRectangleBorder(
@@ -31,6 +31,18 @@ class MyThemeData {
         foregroundColor: MaterialStateProperty.all(Colors.white),
       ),
     ),
+    textTheme: TextTheme(
+      bodyLarge: TextStyle(
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w600,
+        color: Colors.black,
+      ),
+      bodyMedium: TextStyle(
+        fontSize: 12.sp,
+        fontWeight: FontWeight.w400,
+        color: Colors.white,
+      ),
+    )
   );
   static final ThemeData darkTheme = ThemeData(
     scaffoldBackgroundColor: Colors.black,
@@ -40,6 +52,31 @@ class MyThemeData {
       backgroundColor: Colors.black,
       elevation: 0,
       iconTheme: IconThemeData(color: Colors.white),
+    ),
+     textTheme: TextTheme(
+      bodyLarge: TextStyle(
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w600,
+        color: Colors.white,
+      ),
+      bodyMedium: TextStyle(
+        fontSize: 12.sp,
+        fontWeight: FontWeight.w400,
+        color: Colors.black,
+      ),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        fixedSize:MaterialStateProperty.all(Size(358.w, 40.h)) ,
+        backgroundColor: MaterialStateProperty.all(AppColors.primary),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(36.r),
+          ),
+        ),
+       
+        foregroundColor: MaterialStateProperty.all(Colors.white),
+      ),
     ),
   );
 }
