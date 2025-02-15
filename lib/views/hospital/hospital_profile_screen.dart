@@ -9,13 +9,8 @@ const HospitalProfileScreen({super. key}) ;
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: Text("Dahab Hospital", style: TextStyle(color: Colors.black, fontSize: 18.sp)),
+
+        title: Text("Dahab Hospital"),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),

@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(12),
+      width: 150.w,
+      margin: REdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).textTheme.bodyMedium!.color,
         borderRadius: BorderRadius.circular(30),
-        boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 5)],
+        
+        boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
+                    offset: Offset(0.0, 1.0), //(x,y)
+                    blurRadius: 6.0,
+                  ),
+                ],
       ),
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      padding: REdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -24,10 +33,10 @@ class CustomBottomNavigationBar extends StatelessWidget {
 
   Widget _navItem(IconData icon, bool isSelected) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: REdgeInsets.all(10),
       decoration: BoxDecoration(
         color: isSelected ? Colors.blue : Colors.transparent,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(16.r),
       ),
       child: Icon(icon, color: isSelected ? Colors.white : Colors.grey, size: 24),
     );

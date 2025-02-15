@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:yalla_dahab/views/home/home_screen.dart';
 
+import '../register/register_screen.dart';
 import '../widgets/custom_text_field.dart';
 class LoginScreenView extends StatelessWidget {
   static const String routeName = "login_view";
@@ -10,97 +12,92 @@ class LoginScreenView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
         return Scaffold(
+      appBar: AppBar(title: Text("Login")),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              "Login",
-              style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 8.h),
+            
             Text(
               "Welcome back!",
-              style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 24.sp),
             ),
             SizedBox(height: 4.h),
             Text(
               "Please enter your details to log in.",
-              style: TextStyle(fontSize: 14.sp),
+              style:Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 14.sp,fontWeight: FontWeight.w400),
             ),
             SizedBox(height: 24.h),
-            CustomTextField(title: 'Full Name', labelText: 'Enter your full name'),
-            SizedBox(height: 10.h),
           CustomTextField(title: 'Email Address', labelText: 'Enter your email address'),
+            SizedBox(height: 10.h),
+                        CustomTextField(title: 'Password', labelText: 'Enter your password'),
+
             SizedBox(height: 10.h),
             SizedBox(height: 10.h),
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
                 onPressed: () {},
-                child: Text("Forgot password?", style: TextStyle(fontSize: 12.sp)),
+                child: Text("Forgot password?", style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 14.sp),),
               ),
             ),
             SizedBox(height: 16.h),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  padding: EdgeInsets.symmetric(vertical: 14.h),
-                ),
-                onPressed: () {},
+                
+                onPressed: () {
+                  Navigator.pushNamedAndRemoveUntil(context,  HomeScreen.routeName, (Route<dynamic> route) => false);
+                },
                 child: Text(
                   "Login",
-                  style: TextStyle(fontSize: 16.sp, color: Colors.white),
+                  style: Theme.of(context).textTheme.bodyLarge
                 ),
               ),
             ),
             SizedBox(height: 16.h),
-            Center(child: Text("or", style: TextStyle(fontSize: 14.sp))),
+            Center(child: Text("or",style:  Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 13.sp),)),
             SizedBox(height: 16.h),
             GestureDetector(
-              onTap: () {},
-              child: Container(
-                width: double.infinity,
-                padding: EdgeInsets.symmetric(vertical: 12.h),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(8.r),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset('assets/svg/google.svg',
-                      height: 24.h,
-                    ),
-                    SizedBox(width: 8.w),
-                    Text("Continue with Google", style: TextStyle(fontSize: 14.sp)),
-                  ],
-                ),
+              onTap: () {
+                Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SvgPicture.asset('assets/svg/google.svg',
+                    height: 24.h,
+                  ),
+                  SizedBox(width: 8.w),
+                  Text("Continue with Google", style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 14.sp),),
+                ],
               ),
             ),
             SizedBox(height: 16.h),
             Center(
               child: GestureDetector(
-                onTap: () {},
-                child: RichText(
-                  text: TextSpan(
-                    style: TextStyle(color: Colors.black, fontSize: 14.sp),
-                    children: [
-                      TextSpan(text: "Don't have an account? "),
-                      TextSpan(
-                        text: "Sign up",
-                        style: TextStyle(
+                onTap: () {
+                  Navigator.pushNamed(context, RegisterScreen.routeName);
+
+                },
+                child: Row(mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Don\'t have an account?',
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 15.sp,fontWeight: FontWeight.w400),),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, RegisterScreen.routeName);
+                  },
+                  child: Text(' Sign up',style: TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
+                        ),),
                 ),
+              ],
+            ),
               ),
             ),
           ],

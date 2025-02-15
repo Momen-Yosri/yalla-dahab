@@ -1,143 +1,157 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:yalla_dahab/views/home/widgets/category_button.dart';
 import 'widgets/custom_navigation_bar.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   static const String routeName = "HomeScreen";
-   HomeScreen({super.key});
+
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+  String selectedCategory = "All";
+
   final List<Map<String, dynamic>> popularPlaces = [
-    {
-      "name": "Retac Qunay ",
-      "image": "assets/images/hotel_list1.jpg",
-      "rating": 4.8
-    },
-    {
-      "name": "Alley Palace",
-      "image": "assets/images/hotel_list2.jpg",
-      "rating": 4.1
-    },
-    {
-      "name": "Sheraton",
-      "image": "assets/images/hotel_list3.jpg",
-      "rating": 4.3
-    },
-    {
-      "name": "semiramis",
-      "image": "assets/images/hotel_list4.jpg",
-      "rating": 4.5
-    },
+    {"name": "Retac Qunay", "image": "assets/images/hotel_list1.jpg", "rating": 4.8},
+    {"name": "Alley Palace", "image": "assets/images/hotel_list2.jpg", "rating": 4.1},
+    {"name": "Sheraton", "image": "assets/images/hotel_list3.jpg", "rating": 4.3},
+    {"name": "Semiramis", "image": "assets/images/hotel_list4.jpg", "rating": 4.5},
   ];
+
+  final List<Map<String, dynamic>> categories = [
+    {"icon": Icons.grid_view, "label": "All"},
+    {"icon": Icons.hotel, "label": "Hotels"},
+    {"icon": Icons.restaurant, "label": "Restaurants"},
+    {"icon": Icons.beach_access, "label": "Tourism"},
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: categories.length, vsync: this);
+    _tabController.addListener(() {
+      setState(() {
+        selectedCategory = categories[_tabController.index]["label"];
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       bottomNavigationBar: CustomBottomNavigationBar(),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 40),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 20.h),
 
-            // User Profile
-            Center(
-              child: Column(
-                children: [
-                  CircleAvatar(
-                    radius: 40,
-                    backgroundColor: Colors.grey[300],
-                    child: Icon(Icons.person, size: 40, color: Colors.white),
-                  ),
-                  SizedBox(height: 8.h),
-                  Text("Hi, (User name)", style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500)),
-                ],
-              ),
-            ),
-
-            SizedBox(height: 16.h),
-
-            // Search Bar
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 12),
-              decoration: BoxDecoration(
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: TextField(
-                decoration: InputDecoration(
-                  icon: Icon(Icons.search, color: Colors.grey),
-                  hintText: "Search",
-                  border: InputBorder.none,
-                  suffixIcon: Icon(Icons.clear, color: Colors.grey),
+              // User Profile
+              Center(
+                child: Column(
+                  children: [
+                    CircleAvatar(
+                      radius: 40,
+                      backgroundColor: Colors.grey[300],
+                      child: Icon(Icons.person, size: 40, color: Colors.white),
+                    ),
+                    SizedBox(height: 8.h),
+                    Text(
+                      "Hi, (User name)",
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w400,
+                          ),
+                    ),
+                  ],
                 ),
               ),
-            ),
 
-            SizedBox(height: 16.h),
+              SizedBox(height: 16.h),
 
-            // Category Filters
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                _categoryButton(Icons.grid_view, "All", isSelected: true),
-                _categoryButton(Icons.hotel, "Hotels"),
-                _categoryButton(Icons.restaurant, "Restaurants"),
-                _categoryButton(Icons.beach_access, "Tourism"),
-              ],
-            ),
-
-            SizedBox(height: 16),
-
-            // Popular Places Section
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("Popular Places", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                Text("View all", style: TextStyle(fontSize: 14, color: Colors.blue)),
-              ],
-            ),
-
-            SizedBox(height: 8.h),
-
-            // Popular Places Grid
-            GridView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-                childAspectRatio: 0.85,
+              // Search Bar
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 12),
+                decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: TextField(
+                  decoration: InputDecoration(
+                    icon: Icon(Icons.search, color: Colors.grey),
+                    hintText: "Search",
+                    border: InputBorder.none,
+                    suffixIcon: Icon(Icons.clear, color: Colors.grey),
+                  ),
+                ),
               ),
-              itemCount: popularPlaces.length,
-              itemBuilder: (context, index) {
-                final place = popularPlaces[index];
-                return _placeCard(place["image"], place["name"], place["rating"]);
-              },
-            ),
-          ],
+
+              SizedBox(height: 16.h),
+
+              // Category Filters
+              TabBar(
+                controller: _tabController,
+                indicatorColor: Colors.blue,
+                labelPadding: EdgeInsets.symmetric(horizontal: 10.w),
+                tabs: categories.map((category) {
+                  return Tab(
+                    child: CategoryButton(
+                      icon: category["icon"],
+                      label: category["label"],
+                      isSelected: selectedCategory == category["label"],
+                    ),
+                  );
+                }).toList(),
+                isScrollable: true,
+                tabAlignment: TabAlignment.start,
+              ),
+
+              SizedBox(height: 16),
+
+              // Popular Places Section
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Popular Places", style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 22.sp, fontWeight: FontWeight.w700)),
+                  Text("View all", style: TextStyle(fontSize: 14.sp, color: Colors.blue, fontWeight: FontWeight.w600)),
+                ],
+              ),
+
+              SizedBox(height: 24.h),
+
+              // Popular Places Grid
+              GridView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  childAspectRatio: 0.85,
+                ),
+                itemCount: popularPlaces.length,
+                itemBuilder: (context, index) {
+                  final place = popularPlaces[index];
+                  return _placeCard(place["image"], place["name"], place["rating"]);
+                },
+              ),
+            ],
+          ),
         ),
       ),
-    );
-  }
-
-  // Category Button
-  Widget _categoryButton(IconData icon, String label, {bool isSelected = false}) {
-    return Column(
-      children: [
-        Container(
-          padding: REdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: isSelected ? Colors.blue : Colors.grey[200],
-            borderRadius: BorderRadius.circular(8.r),
-          ),
-          child: Icon(icon, color: isSelected ? Colors.white : Colors.black),
-        ),
-        SizedBox(height: 4.h),
-        Text(label, style: TextStyle(fontSize: 12)),
-      ],
     );
   }
 
@@ -178,5 +192,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-// Bottom Navigation Bar

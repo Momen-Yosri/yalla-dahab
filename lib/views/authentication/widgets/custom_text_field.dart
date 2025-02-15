@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextField extends StatelessWidget {
   final String title;
@@ -11,8 +12,8 @@ class CustomTextField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title),
-        Text(labelText),
+        Text(title,style: Theme.of(context).textTheme.bodyLarge,),
+        Text(labelText,style: TextStyle(color: Color(0xff666E7A),fontSize: 12.sp),),
 TextField(
   decoration: InputDecoration(
     filled: true,
