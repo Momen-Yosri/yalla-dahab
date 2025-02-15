@@ -7,6 +7,7 @@ class MyThemeData {
     scaffoldBackgroundColor: Colors.white,
     appBarTheme: AppBarTheme(
       centerTitle: true,
+      
       titleTextStyle: TextStyle(color: Colors.black, fontSize: 24.sp),
       backgroundColor: Colors.white,
       elevation: 0,

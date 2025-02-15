@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         builder: (_, child) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            initialRoute: HomeScreen.routeName,
+            initialRoute: AllAvailableHotelsPage.routeName,
             routes: {
               RegisterScreen.routeName: (context) => const RegisterScreen(),
               LoginScreenView.routeName: (context) => const LoginScreenView(),

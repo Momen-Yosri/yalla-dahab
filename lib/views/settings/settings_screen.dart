@@ -22,17 +22,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       appBar: AppBar(
     
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
-        ),
+        
         title: Text("Settings",
-            style: TextStyle(color: Colors.black, fontSize: 18.sp)),
-        centerTitle: true,
+           )
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 20.h),
 
@@ -41,14 +38,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
               child: Column(
                 children: [
                   CircleAvatar(
-                    radius: 40.r,
+                    radius: 75.r,
                     backgroundColor: Colors.blue[100],
-                    child: Icon(Icons.person, size: 50.sp, color: Colors.blue),
+                    child: Icon(Icons.person, size: 100.sp, color: Colors.blue),
                   ),
                   SizedBox(height: 10.h),
                   Text("John Doe",
-                      style: TextStyle(
-                          fontSize: 20.sp, fontWeight: FontWeight.bold)),
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 20.sp,fontWeight: FontWeight.bold),),
                 ],
               ),
             ),
@@ -56,7 +52,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             SizedBox(height: 30.h),
 
             // Personal Information Section
-            sectionTitle("Personal Information"),
+Text('Personal Information',style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 15.sp,fontWeight: FontWeight.bold),),
             settingsTile(
               icon: FontAwesomeIcons.pencil,
               title: "Edit Profile",
@@ -93,7 +89,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       child: Align(
         alignment: Alignment.centerLeft,
         child: Text(title,
-            style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold)),
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 16.sp,fontWeight: FontWeight.bold),),
       ),
     );
   }
@@ -107,13 +103,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return ListTile(
       leading: Icon(icon, color: Colors.blue, size: 20.sp),
       title: Text(title,
-          style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500)),
+          style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 15.sp,fontWeight: FontWeight.w400),),
       subtitle: subtitle != null
           ? Text(subtitle,
-              style: TextStyle(fontSize: 14.sp, color: Colors.black54))
+              style: TextStyle(fontSize: 14.sp, color:Theme.of(context).textTheme.bodyLarge!.color))
           : null,
       trailing:
-          Icon(Icons.arrow_forward_ios, size: 16.sp, color: Colors.black54),
+          Icon(Icons.arrow_forward_ios, size: 16.sp, color: Theme.of(context).textTheme.bodyLarge!.color),
       onTap: onTap,
     );
   }
@@ -121,7 +117,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   // Dark Mode Toggle
   Widget darkModeToggle(provider) {
     return ListTile(
-      title: Text("Enable Dark Mode", style: TextStyle(fontSize: 16.sp)),
+      title: Text("Enable Dark Mode", style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 15.sp,fontWeight: FontWeight.w400),),
       trailing: Switch(
         activeColor: AppColors.primary,
         value: isDarkMode,

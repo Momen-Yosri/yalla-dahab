@@ -14,7 +14,7 @@ class SettingsTextField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500)),
+        Text(label, style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 14.sp,fontWeight: FontWeight.w500),),
         SizedBox(height: 5.h),
         TextField(
           decoration: InputDecoration(

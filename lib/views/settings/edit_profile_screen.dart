@@ -19,14 +19,7 @@ String selectedGender = "Male";
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
-        ),
-        centerTitle: true,
-        title: Text("Edit Profile", style: TextStyle(color: Colors.black, fontSize: 18.sp)),
+        title: Text("Edit Profile",),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -36,9 +29,9 @@ String selectedGender = "Male";
               SizedBox(height: 20.h),
 
               CircleAvatar(
-                radius: 50.r,
+                radius: 75.r,
                 backgroundColor: Colors.blue[100],
-                child: Icon(Icons.person, size: 50.sp, color: Colors.blue),
+                child: Icon(Icons.person, size: 100.sp, color: Colors.blue),
               ),
 
               SizedBox(height: 20.h),
@@ -61,7 +54,7 @@ String selectedGender = "Male";
               SizedBox(height: 15.h),
               Align(
                 alignment: Alignment.centerLeft,
-                child: Text("Gender", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500)),
+                child: Text("Gender", style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 16.sp,fontWeight: FontWeight.w500),),
               ),
 
                Row(
