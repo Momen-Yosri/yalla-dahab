@@ -11,6 +11,7 @@ import 'views/authentication/login/login_screen.dart';
 import 'views/hotels/all_hotels.dart';
 import 'views/restaurant/resturtrant_deitals.dart';
 import 'views/settings/settings_screen.dart';
+import 'views/splash/splash_screen.dart';
 import 'views/trips/trip_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -33,8 +34,9 @@ class MyApp extends StatelessWidget {
         builder: (_, child) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            initialRoute: HospitalProfileScreen.routeName,
+            initialRoute: SplashScreen.routeName,
             routes: {
+              SplashScreen.routeName: (context) =>  SplashScreen(),
               RegisterScreen.routeName: (context) => const RegisterScreen(),
               LoginScreenView.routeName: (context) => const LoginScreenView(),
               HomeScreen.routeName: (context) => HomeScreen(),

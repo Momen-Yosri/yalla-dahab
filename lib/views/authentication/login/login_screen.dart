@@ -53,7 +53,6 @@ class LoginScreenView extends StatelessWidget {
                 },
                 child: Text(
                   "Login",
-                  style: Theme.of(context).textTheme.bodyLarge
                 ),
               ),
             ),
