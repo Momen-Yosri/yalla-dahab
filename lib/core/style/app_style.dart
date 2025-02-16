@@ -7,7 +7,7 @@ class MyThemeData {
     scaffoldBackgroundColor: Colors.white,
     appBarTheme: AppBarTheme(
       centerTitle: true,
-      
+      scrolledUnderElevation: 0,
       titleTextStyle: TextStyle(color: Colors.black, fontSize: 24.sp),
       backgroundColor: Colors.white,
       elevation: 0,
@@ -48,6 +48,7 @@ class MyThemeData {
   static final ThemeData darkTheme = ThemeData(
     scaffoldBackgroundColor: Colors.black,
     appBarTheme: AppBarTheme(
+      scrolledUnderElevation: 0,
       centerTitle: true,
       titleTextStyle: TextStyle(color: Colors.white, fontSize: 24.sp),
       backgroundColor: Colors.black,

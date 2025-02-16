@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         builder: (_, child) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            initialRoute: RestaurantDetailScreen.routeName,
+            initialRoute: HomeScreen.routeName,
             routes: {
               SplashScreen.routeName: (context) =>  SplashScreen(),
               RegisterScreen.routeName: (context) => const RegisterScreen(),
