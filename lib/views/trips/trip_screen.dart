@@ -27,23 +27,19 @@ class TripDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: Text("Trips", style: TextStyle(color: Colors.black, fontSize: 18.sp)),
+       
+        title: Text("Trips"),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w),
+        padding: REdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Trip Title
               Text("Enchanting Bali Getaway",
-                  style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.bold)),
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 24
+                  .sp, fontWeight: FontWeight.w700)),
 
               SizedBox(height: 10.h),
 
@@ -51,16 +47,16 @@ class TripDetailsScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(FontAwesomeIcons.calendarCheck, size: 16.sp, color: Colors.black54),
+                  Icon(FontAwesomeIcons.calendarCheck, size: 16.sp, color: Theme.of(context).textTheme.bodyLarge!.color),
                   SizedBox(width: 8.w),
-                  Text("7 Days, 6 Nights", style: TextStyle(fontSize: 16.sp)),
+                  Text("7 Days, 6 Nights", style:Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 15.sp, fontWeight: FontWeight.w500)),
                 ],
               ),
 
               SizedBox(height: 20.h),
 
               // Trip Photos Title
-              Text("Trip Photos", style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold)),
+              Text("Trip Photos", style:Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 15.sp, fontWeight: FontWeight.w500)),
 
               SizedBox(height: 10.h),
 
@@ -88,24 +84,20 @@ class TripDetailsScreen extends StatelessWidget {
               SizedBox(height: 20.h),
 
               // Trip Overview Title
-              Text("Trip Overview", style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold)),
+              Text("Trip Overview", style:Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 20.sp, fontWeight: FontWeight.w600)),
 
               SizedBox(height: 10.h),
 
               // Trip Itinerary List
               Container(
                 padding: EdgeInsets.all(15.w),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12.r),
-                  boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 5.r)],
-                ),
+               
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: itinerary.map((day) {
                     return Padding(
                       padding: EdgeInsets.only(bottom: 10.h),
-                      child: Text(day, style: TextStyle(fontSize: 16.sp)),
+                      child: Text(day, style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 16.sp, fontWeight: FontWeight.w400)),
                     );
                   }).toList(),
                 ),

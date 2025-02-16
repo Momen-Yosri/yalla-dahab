@@ -1,46 +1,38 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-
-
 class HotelDetailsPage extends StatelessWidget {
-   HotelDetailsPage({super. key}) ;
+  HotelDetailsPage({super.key});
   static const String routeName = "hotelDetailsPage";
-  final String mainImage = "assets/images/mainHotelImage.png"; 
+  final String mainImage = "assets/images/mainHotelImage.png";
   final List<String> thumbnails = [
     "assets/images/hotel1.png",
     "assets/images/hotel2.png",
     "assets/images/hotel3.png",
     "assets/images/hotel4.png",
-   
-  ]; 
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: Text("Luxury Haven Hotel", style: TextStyle(fontWeight: FontWeight.bold)),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
+        title: Text("Luxury Haven Hotel"),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16),
+        padding: REdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Main Image
             ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.asset(mainImage, width: double.infinity, height: 200, fit: BoxFit.cover),
+              borderRadius: BorderRadius.circular(12.r),
+              child: Image.asset(mainImage,
+                  width: double.infinity, height: 200.h, fit: BoxFit.cover),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 10.h),
 
             // Thumbnail Images
             Row(
@@ -48,25 +40,34 @@ class HotelDetailsPage extends StatelessWidget {
               children: thumbnails.map((image) {
                 return ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: Image.asset(image, width: 80, height: 60, fit: BoxFit.cover),
+                  child: Image.asset(image,
+                      width: 80.w, height: 60.h, fit: BoxFit.cover),
                 );
               }).toList(),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 20.h),
 
             // Hotel Name & Stars
-            Text("Luxury Haven Hotel", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+            Text("Luxury Haven Hotel",
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge!
+                    .copyWith(fontSize: 20.sp, fontWeight: FontWeight.w600)),
             Row(
-              children: List.generate(5, (index) => Icon(Icons.star, color: Colors.amber, size: 18)),
+              children: List.generate(5,
+                  (index) => Icon(Icons.star, color: Colors.amber, size: 24.sp)),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 10.h),
 
             // Description
             Text(
               "Experience unparalleled luxury at Luxury Haven Hotel, where modern elegance meets world-class hospitality. "
               "Nestled in the heart of the city, our 5-star establishment offers breathtaking views, exquisite dining, "
               "and state-of-the-art amenities for the discerning traveler.",
-              style: TextStyle(fontSize: 14, color: Colors.black54),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge!
+                  .copyWith(fontSize: 15.sp, fontWeight: FontWeight.w400),
             ),
             SizedBox(height: 20),
 
@@ -74,41 +75,120 @@ class HotelDetailsPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Column(children: [Icon(Icons.wifi, size: 24), Text("Free Wi-Fi", style: TextStyle(fontSize: 12))]),
-                Column(children: [Icon(Icons.pool, size: 24), Text("Pool", style: TextStyle(fontSize: 12))]),
-                Column(children: [Icon(Icons.local_parking, size: 24), Text("Parking", style: TextStyle(fontSize: 12))]),
-                Column(children: [Icon(Icons.spa, size: 24), Text("Spa", style: TextStyle(fontSize: 12))]),
+                Column(children: [
+                  Icon(
+                    Icons.wifi,
+                    size: 24.sp,
+                    color: Theme.of(context).textTheme.bodyLarge!.color,
+                  ),
+                  Text("Free Wi-Fi", style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 12.sp,fontWeight: FontWeight.w400),
+)
+                ]),
+                Column(children: [
+                  Icon(
+                    Icons.pool,
+                    size: 24.sp,
+                    color: Theme.of(context).textTheme.bodyLarge!.color,
+                  ),
+                  Text("Pool", style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 12.sp,fontWeight: FontWeight.w400),)
+                ]),
+                Column(children: [
+                  Icon(
+                    Icons.local_parking,
+                    size: 24.sp,
+                    color: Theme.of(context).textTheme.bodyLarge!.color,
+                  ),
+                  Text("Parking", style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 12.sp,fontWeight: FontWeight.w400),)
+                ]),
+                Column(children: [
+                  Icon(
+                    Icons.spa,
+                    size: 24.sp,
+                    color: Theme.of(context).textTheme.bodyLarge!.color,
+                  ),
+                  Text("Spa", style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 12.sp,fontWeight: FontWeight.w400),)
+                ]),
               ],
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 20.h),
 
             // Contact Information
-            Text("Contact Information", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text("Contact Information",
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge!
+                    .copyWith(fontSize: 18.sp, fontWeight: FontWeight.w500)),
             SizedBox(height: 10),
-            Row(children: [Icon(Icons.phone, size: 18), SizedBox(width: 8), Text("+1 (555) 123-4567")]),
+            Row(children: [
+              Icon(
+                Icons.phone,
+                size: 18.sp,
+                color: Theme.of(context).textTheme.bodyLarge!.color,
+              ),
+              SizedBox(width: 8.w),
+              Text(
+                "+1 (555) 123-4567",
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge!
+                    .copyWith(fontSize: 15.sp, fontWeight: FontWeight.w400),
+              )
+            ]),
             SizedBox(height: 5),
-            Row(children: [Icon(Icons.email, size: 18), SizedBox(width: 8), Text("info@luxuryhaven.com")]),
+            Row(children: [
+              Icon(
+                Icons.email,
+                size: 18.sp,
+                color: Theme.of(context).textTheme.bodyLarge!.color,
+              ),
+              SizedBox(width: 8.w),
+              Text("info@luxuryhaven.com",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge!
+                      .copyWith(fontSize: 15.sp, fontWeight: FontWeight.w400))
+            ]),
             SizedBox(height: 5),
-            Row(children: [Icon(Icons.location_on, size: 18), SizedBox(width: 8), Text("123 Luxury Avenue, Cityville, State 12345")]),
+            Row(children: [
+              Icon(
+                Icons.location_on,
+                size: 18.sp,
+                color: Theme.of(context).textTheme.bodyLarge!.color,
+              ),
+              SizedBox(width: 8.w),
+              Text("123 Luxury Avenue, Cityville, State 12345",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge!
+                      .copyWith(fontSize: 15.sp, fontWeight: FontWeight.w400))
+            ]),
             SizedBox(height: 20),
 
             // Social Media Icons
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-               children: [
-    IconButton(
-      icon: Icon(FontAwesomeIcons.facebook),
-      onPressed: () {},
-    ),
-    IconButton(
-      icon: Icon(FontAwesomeIcons.instagram),
-      onPressed: () {},
-    ),
-    IconButton(
-      icon: Icon(FontAwesomeIcons.twitter),
-      onPressed: () {},
-    ),
-  ],
+              children: [
+                IconButton(
+                  icon: Icon(FontAwesomeIcons.facebook),
+                  onPressed: () {},
+                  iconSize: 30.sp,
+                  color: Theme.of(context).textTheme.bodyLarge!.color,
+                ),
+                SizedBox(width: 10.w),
+                IconButton(
+                  icon: Icon(FontAwesomeIcons.instagram),
+                  onPressed: () {},
+                  iconSize: 30.sp,
+                  color: Theme.of(context).textTheme.bodyLarge!.color,
+                ),
+                SizedBox(width: 10.w),
+                IconButton(
+                  icon: Icon(FontAwesomeIcons.twitter),
+                  iconSize: 30.sp,
+                  color: Theme.of(context).textTheme.bodyLarge!.color,
+                  onPressed: () {},
+                ),
+              ],
             ),
           ],
         ),

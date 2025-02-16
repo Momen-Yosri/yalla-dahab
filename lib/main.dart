@@ -27,13 +27,13 @@ class MyApp extends StatelessWidget {
     var provider = Provider.of<AppConfigurationProvider>(context);
 
     return ScreenUtilInit(
-        designSize: const Size(412, 917),
+        designSize: const Size(360, 690),
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (_, child) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            initialRoute: AllAvailableHotelsPage.routeName,
+            initialRoute: HospitalProfileScreen.routeName,
             routes: {
               RegisterScreen.routeName: (context) => const RegisterScreen(),
               LoginScreenView.routeName: (context) => const LoginScreenView(),
@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
                   RestaurantDetailScreen(),
               SettingsScreen.routeName: (context) => SettingsScreen(),
             },
-            theme: MyThemeData.darkTheme,
+            theme: MyThemeData.lightTheme,
             darkTheme: MyThemeData.darkTheme,
             themeMode: provider.currentThemeMode,
            
