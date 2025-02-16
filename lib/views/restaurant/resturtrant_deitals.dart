@@ -9,23 +9,14 @@ class RestaurantDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+     
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white, size: 24.sp),
-          onPressed: () {},
-        ),
+       
+        
         title: Text(
           "Gourmet Haven",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 18.sp,
-            fontWeight: FontWeight.bold,
-          ),
+         
         ),
-        centerTitle: true,
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
@@ -35,11 +26,7 @@ class RestaurantDetailScreen extends StatelessWidget {
             // Title
             Text(
               "Our Signature Dish",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 22.sp,
-                fontWeight: FontWeight.bold,
-              ),
+               style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 20.sp, fontWeight: FontWeight.w600),
             ),
             SizedBox(height: 10.h),
 
@@ -59,15 +46,14 @@ class RestaurantDetailScreen extends StatelessWidget {
             Text(
               "Seafood Paella: A vibrant medley of fresh shrimp, mussels, and aromatic saffron rice",
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white70, fontSize: 14.sp),
-            ),
+style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 15.sp, fontWeight: FontWeight.w400),            ),
             SizedBox(height: 10.h),
 
             // View Full Menu Button
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
+                backgroundColor: Color(0xff2B67E9),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12.r),
                 ),
@@ -86,22 +72,21 @@ class RestaurantDetailScreen extends StatelessWidget {
                  Text(
               "Follow Us",
               style: TextStyle(
-                color: Colors.white,
-                fontSize: 18.sp,
+ color:Theme.of(context).textTheme.bodyLarge!.color,                fontSize: 18.sp,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Spacer(),
                 IconButton(
-                  icon: FaIcon(FontAwesomeIcons.facebook, color: Colors.white, size: 24.sp),
+                  icon: FaIcon(FontAwesomeIcons.facebook, color:Theme.of(context).textTheme.bodyLarge!.color, size: 24.sp),
                   onPressed: () {},
                 ),
                 IconButton(
-                  icon: FaIcon(FontAwesomeIcons.instagram, color: Colors.white, size: 24.sp),
+                  icon: FaIcon(FontAwesomeIcons.instagram,  color:Theme.of(context).textTheme.bodyLarge!.color, size: 24.sp),
                   onPressed: () {},
                 ),
                 IconButton(
-                  icon: FaIcon(FontAwesomeIcons.twitter, color: Colors.white, size: 24.sp),
+                  icon: FaIcon(FontAwesomeIcons.twitter,  color:Theme.of(context).textTheme.bodyLarge!.color, size: 24.sp),
                   onPressed: () {},
                 ),
               ],
@@ -113,7 +98,7 @@ class RestaurantDetailScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(16.r),
               child: Image.asset(
                 "assets/images/location.png", // Replace with actual map image
-                height: 300.h,
+                height: 200.h,
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),
@@ -124,7 +109,7 @@ class RestaurantDetailScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
+                backgroundColor: Color(0xff2B67E9),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12.r),
                 ),

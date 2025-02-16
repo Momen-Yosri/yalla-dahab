@@ -11,6 +11,7 @@ import 'views/authentication/login/login_screen.dart';
 import 'views/hotels/all_hotels.dart';
 import 'views/restaurant/resturtrant_deitals.dart';
 import 'views/settings/settings_screen.dart';
+import 'views/splash/splash_screen.dart';
 import 'views/trips/trip_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -27,14 +28,15 @@ class MyApp extends StatelessWidget {
     var provider = Provider.of<AppConfigurationProvider>(context);
 
     return ScreenUtilInit(
-        designSize: const Size(412, 917),
+        designSize: const Size(360, 690),
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (_, child) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            initialRoute: AllAvailableHotelsPage.routeName,
+            initialRoute: SplashScreen.routeName,
             routes: {
+              SplashScreen.routeName: (context) =>  SplashScreen(),
               RegisterScreen.routeName: (context) => const RegisterScreen(),
               LoginScreenView.routeName: (context) => const LoginScreenView(),
               HomeScreen.routeName: (context) => HomeScreen(),
@@ -49,7 +51,7 @@ class MyApp extends StatelessWidget {
                   RestaurantDetailScreen(),
               SettingsScreen.routeName: (context) => SettingsScreen(),
             },
-            theme: MyThemeData.darkTheme,
+            theme: MyThemeData.lightTheme,
             darkTheme: MyThemeData.darkTheme,
             themeMode: provider.currentThemeMode,
            

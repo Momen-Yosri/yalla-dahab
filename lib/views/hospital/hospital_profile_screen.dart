@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'widgets/department_item.dart';
+
 class HospitalProfileScreen extends StatelessWidget {
   static const String routeName = 'HospitalProfileScreen';
 const HospitalProfileScreen({super. key}) ;
@@ -31,16 +33,16 @@ const HospitalProfileScreen({super. key}) ;
             SizedBox(height: 20.h),
 
             // Hospital Name
-            Text("St. Mary's Hospital", style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold)),
+            Text("St. Mary's Hospital", style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 20.sp, fontWeight: FontWeight.bold)),
 
             SizedBox(height: 10.h),
 
             // Phone Number
             Row(
               children: [
-                Icon(Icons.phone, size: 18.sp, color: Colors.black54),
+                Icon(Icons.phone, size: 18.sp, color:Theme.of(context).textTheme.bodyLarge!.color),
                 SizedBox(width: 10.w),
-                Text("+1 (555) 123-4567", style: TextStyle(fontSize: 16.sp)),
+                Text("+1 (555) 123-4567", style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 15.sp, fontWeight: FontWeight.w400)),
               ],
             ),
 
@@ -49,12 +51,13 @@ const HospitalProfileScreen({super. key}) ;
             // Get Directions Button
             Row(
               children: [
-                Icon(Icons.location_on, size: 18.sp, color: Colors.black54),
+                Icon(Icons.location_on, size: 24.sp, color:Theme.of(context).textTheme.bodyLarge!.color),
                 SizedBox(width: 10.w),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r)),
+                    backgroundColor: Color(0xff2B67E9),
+                    maximumSize: Size(150.w, 30.h),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.r)),
                   ),
                   onPressed: () {
                     // Handle Navigation
@@ -67,16 +70,16 @@ const HospitalProfileScreen({super. key}) ;
             SizedBox(height: 20.h),
 
             // Departments Title
-            Text("Departments", style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold)),
+            Text("Departments", style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 17.sp, fontWeight: FontWeight.bold)),
 
-            SizedBox(height: 10.h),
+            SizedBox(height: 12.h),
 
             // Departments List
-            _buildDepartmentItem(FontAwesomeIcons.stethoscope, "General Medicine"),
-            _buildDepartmentItem(FontAwesomeIcons.heartPulse, "Cardiology"),
-            _buildDepartmentItem(FontAwesomeIcons.brain, "Neurology"),
-            _buildDepartmentItem(FontAwesomeIcons.bone, "Orthopedics"),
-            _buildDepartmentItem(FontAwesomeIcons.baby, "Pediatrics"),
+            DepartmentItem(icon:FontAwesomeIcons.stethoscope, departmentName: "General Medicine"),
+            DepartmentItem(icon:FontAwesomeIcons.heartPulse,  departmentName:"Cardiology"),
+            DepartmentItem(icon:FontAwesomeIcons.brain,  departmentName:"Neurology"),
+            DepartmentItem(icon:FontAwesomeIcons.bone,  departmentName:"Orthopedics"),
+            DepartmentItem(icon:FontAwesomeIcons.baby,  departmentName:"Pediatrics"),
           ],
         ),
       ),
@@ -84,16 +87,5 @@ const HospitalProfileScreen({super. key}) ;
   }
 
   // Widget for Department List Item
-  Widget _buildDepartmentItem(IconData icon, String departmentName) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: 12.h),
-      child: Row(
-        children: [
-          Icon(icon, size: 20.sp, color: Colors.black54),
-          SizedBox(width: 10.w),
-          Text(departmentName, style: TextStyle(fontSize: 16.sp)),
-        ],
-      ),
-    );
-  }
+  
 }

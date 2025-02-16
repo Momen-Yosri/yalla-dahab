@@ -80,7 +80,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
             SizedBox(height: 10.h),
-            Center(child: Text('or')),
+            Center(child: Text('or',style:  Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 13.sp),)),
             SizedBox(height: 10.h),
             InkWell(
               onTap: () {
