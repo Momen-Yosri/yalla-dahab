@@ -89,7 +89,7 @@ class RestaurantDetailScreen extends StatelessWidget {
                       color: Theme.of(context).textTheme.bodyLarge!.color,
                       size: 24.sp),
                   onPressed: () {
-                      launchMyUli('https://www.facebook.com/');
+                      launchMyUli('https://www.facebook.com/momen.yosri.1');
                     },
                 ),
                 IconButton(
@@ -97,7 +97,7 @@ class RestaurantDetailScreen extends StatelessWidget {
                       color: Theme.of(context).textTheme.bodyLarge!.color,
                       size: 24.sp),
                   onPressed: () {
-                    launchMyUli('https://www.instagram.com/');
+                    launchMyUli('https://www.instagram.com/momen_yosri');
                   },
                 ),
                 IconButton(
@@ -105,7 +105,7 @@ class RestaurantDetailScreen extends StatelessWidget {
                       color: Theme.of(context).textTheme.bodyLarge!.color,
                       size: 24.sp),
                   onPressed: () {
-                    launchMyUli('https://x.com/');
+                    launchMyUli('https://x.com/momen_yosri?s=90');
                   },
                 ),
               ],

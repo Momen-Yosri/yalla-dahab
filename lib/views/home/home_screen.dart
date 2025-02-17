@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yalla_dahab/views/home/widgets/category_button.dart';
 import 'package:yalla_dahab/views/home/widgets/custom_drawer.dart';
+import 'package:yalla_dahab/views/hotels/hotel_deitals_screen.dart';
+import 'package:yalla_dahab/views/restaurant/resturtrant_deitals.dart';
+import 'package:yalla_dahab/views/trips/trip_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = "HomeScreen";
@@ -51,6 +54,32 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     super.dispose();
   }
 
+  void _navigateBasedOnCategory(BuildContext context, Map<String, dynamic> place) {
+    switch (place["category"]) {
+      case "Hotels":
+        Navigator.pushNamed(
+          context,
+HotelDetailsPage.routeName,
+          arguments: place, // Pass the place data if needed
+        );
+        break;
+      case "Restaurants":
+        Navigator.pushNamed(
+          context,
+          RestaurantDetailScreen.routeName, // Replace with your actual route name
+          arguments: place,
+        );
+        break;
+      case "Tourism":
+        Navigator.pushNamed(
+          context,
+          TripDetailsScreen.routeName, // Replace with your actual route name
+          arguments: place,
+        );
+        break;
+    }
+  }
+
   List<Map<String, dynamic>> getFilteredPlaces() {
     if (selectedCategory == "All") {
       return allPlaces;
@@ -67,7 +96,6 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Category Filters
           TabBar(
             controller: _tabController,
             indicatorColor: Colors.blue,
@@ -86,7 +114,6 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 
           SizedBox(height: 16.h),
 
-          // Popular Places Grid
           Expanded(
             child: Padding(
               padding: REdgeInsets.symmetric(horizontal: 16.w),
@@ -101,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                 itemCount: getFilteredPlaces().length,
                 itemBuilder: (context, index) {
                   final place = getFilteredPlaces()[index];
-                  return _placeCard(place["image"], place["name"], place["rating"]);
+                  return _placeCard(context, place);
                 },
               ),
             ),
@@ -111,40 +138,53 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     );
   }
 
-  // Popular Place Card
-  Widget _placeCard(String imageUrl, String name, double rating) {
-    return Stack(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(12.r),
-          child: Image.asset(imageUrl, width: double.infinity, height: double.infinity, fit: BoxFit.cover),
-        ),
-        Positioned(
-          bottom: 10.h,
-          left: 10.w,
-          right: 10.w,
-          child: Container(
-            padding: REdgeInsets.symmetric(vertical: 4.r, horizontal: 8.h),
-            decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.6),
-              borderRadius: BorderRadius.circular(8.r),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(name, style: TextStyle(color: Colors.white, fontSize: 12.sp)),
-                Row(
-                  children: [
-                    Icon(Icons.star, color: Colors.amber, size: 14),
-                    SizedBox(width: 4.w),
-                    Text(rating.toString(), style: TextStyle(color: Colors.white, fontSize: 12.sp)),
-                  ],
-                ),
-              ],
+  Widget _placeCard(BuildContext context, Map<String, dynamic> place) {
+    return InkWell(
+      onTap: () => _navigateBasedOnCategory(context, place),
+      child: Stack(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(12.r),
+            child: Image.asset(
+              place["image"],
+              width: double.infinity,
+              height: double.infinity,
+              fit: BoxFit.cover,
             ),
           ),
-        ),
-      ],
+          Positioned(
+            bottom: 10.h,
+            left: 10.w,
+            right: 10.w,
+            child: Container(
+              padding: REdgeInsets.symmetric(vertical: 4.r, horizontal: 8.h),
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.6),
+                borderRadius: BorderRadius.circular(8.r),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    place["name"],
+                    style: TextStyle(color: Colors.white, fontSize: 12.sp),
+                  ),
+                  Row(
+                    children: [
+                      Icon(Icons.star, color: Colors.amber, size: 14),
+                      SizedBox(width: 4.w),
+                      Text(
+                        place["rating"].toString(),
+                        style: TextStyle(color: Colors.white, fontSize: 12.sp),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

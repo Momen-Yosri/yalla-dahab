@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yalla_dahab/views/home/home_screen.dart';
 
-import '../../hospital/hospital_profile_screen.dart';
+import '../../hospital/all_hospitals_screen.dart';
 import '../../settings/settings_screen.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -32,6 +32,7 @@ class CustomDrawer extends StatelessWidget {
             leading: Icon(Icons.home, color: Colors.blue),
             title: Text("Home"),
             onTap: () {
+              Navigator.pop(context);
               Navigator.pushReplacementNamed(context, HomeScreen.routeName);
             },
           ),
@@ -39,13 +40,15 @@ class CustomDrawer extends StatelessWidget {
             leading: Icon(Icons.local_hospital, color: Colors.red),
             title: Text("Hospitals"),
             onTap: () {
-              Navigator.pushReplacementNamed(context, HospitalProfileScreen.routeName);
+              Navigator.pop(context);
+              Navigator.pushReplacementNamed(context, HospitalListScreen.routeName);
             },
           ),
           ListTile(
             leading: Icon(Icons.settings, color: Colors.grey),
             title: Text("Settings"),
             onTap: () {
+              Navigator.pop(context);
               Navigator.pushReplacementNamed(context, SettingsScreen.routeName);
             },
           ),
