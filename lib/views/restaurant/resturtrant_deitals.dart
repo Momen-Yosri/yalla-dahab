@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class RestaurantDetailScreen extends StatelessWidget {
   static const String routeName = 'RestaurantDetailScreen';
@@ -9,13 +11,9 @@ class RestaurantDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     
       appBar: AppBar(
-       
-        
         title: Text(
           "Gourmet Haven",
-         
         ),
       ),
       body: SingleChildScrollView(
@@ -26,7 +24,10 @@ class RestaurantDetailScreen extends StatelessWidget {
             // Title
             Text(
               "Our Signature Dish",
-               style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 20.sp, fontWeight: FontWeight.w600),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge!
+                  .copyWith(fontSize: 20.sp, fontWeight: FontWeight.w600),
             ),
             SizedBox(height: 10.h),
 
@@ -46,7 +47,11 @@ class RestaurantDetailScreen extends StatelessWidget {
             Text(
               "Seafood Paella: A vibrant medley of fresh shrimp, mussels, and aromatic saffron rice",
               textAlign: TextAlign.center,
-style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 15.sp, fontWeight: FontWeight.w400),            ),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge!
+                  .copyWith(fontSize: 15.sp, fontWeight: FontWeight.w400),
+            ),
             SizedBox(height: 10.h),
 
             // View Full Menu Button
@@ -60,7 +65,8 @@ style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 15.sp, fontWeig
               ),
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
-                child: Text("View Full Menu", style: TextStyle(color: Colors.white, fontSize: 14.sp)),
+                child: Text("View Full Menu",
+                    style: TextStyle(color: Colors.white, fontSize: 14.sp)),
               ),
             ),
             SizedBox(height: 20.h),
@@ -69,25 +75,38 @@ style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 15.sp, fontWeig
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                 Text(
-              "Follow Us",
-              style: TextStyle(
- color:Theme.of(context).textTheme.bodyLarge!.color,                fontSize: 18.sp,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Spacer(),
+                Text(
+                  "Follow Us",
+                  style: TextStyle(
+                    color: Theme.of(context).textTheme.bodyLarge!.color,
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Spacer(),
                 IconButton(
-                  icon: FaIcon(FontAwesomeIcons.facebook, color:Theme.of(context).textTheme.bodyLarge!.color, size: 24.sp),
-                  onPressed: () {},
+                  icon: FaIcon(FontAwesomeIcons.facebook,
+                      color: Theme.of(context).textTheme.bodyLarge!.color,
+                      size: 24.sp),
+                  onPressed: () {
+                      launchMyUli('https://www.facebook.com/');
+                    },
                 ),
                 IconButton(
-                  icon: FaIcon(FontAwesomeIcons.instagram,  color:Theme.of(context).textTheme.bodyLarge!.color, size: 24.sp),
-                  onPressed: () {},
+                  icon: FaIcon(FontAwesomeIcons.instagram,
+                      color: Theme.of(context).textTheme.bodyLarge!.color,
+                      size: 24.sp),
+                  onPressed: () {
+                    launchMyUli('https://www.instagram.com/');
+                  },
                 ),
                 IconButton(
-                  icon: FaIcon(FontAwesomeIcons.twitter,  color:Theme.of(context).textTheme.bodyLarge!.color, size: 24.sp),
-                  onPressed: () {},
+                  icon: FaIcon(FontAwesomeIcons.twitter,
+                      color: Theme.of(context).textTheme.bodyLarge!.color,
+                      size: 24.sp),
+                  onPressed: () {
+                    launchMyUli('https://x.com/');
+                  },
                 ),
               ],
             ),
@@ -116,12 +135,24 @@ style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 15.sp, fontWeig
               ),
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
-                child: Text("Get Directions", style: TextStyle(color: Colors.white, fontSize: 14.sp)),
+                child: Text("Get Directions",
+                    style: TextStyle(color: Colors.white, fontSize: 14.sp)),
               ),
             ),
           ],
         ),
       ),
     );
+  }
+}
+
+void launchMyUli(String url) async {
+  final Uri _url = Uri.parse(url);
+  bool canLaunch = await canLaunchUrl(_url);
+  if (canLaunch) {
+    launchUrlString(url);
+    launchUrl(_url);
+  } else {
+    print('cannot launch');
   }
 }
