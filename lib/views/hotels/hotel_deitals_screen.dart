@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 class HotelDetailsPage extends StatelessWidget {
   HotelDetailsPage({super.key});
   static const String routeName = "hotelDetailsPage";
@@ -170,14 +169,19 @@ class HotelDetailsPage extends StatelessWidget {
               children: [
                 IconButton(
                   icon: Icon(FontAwesomeIcons.facebook),
-                  onPressed: () {},
+                  onPressed: () {
+                      launchMyUli('https://www.facebook.com/momen.yosri.1');
+                  },
                   iconSize: 30.sp,
                   color: Theme.of(context).textTheme.bodyLarge!.color,
                 ),
                 SizedBox(width: 10.w),
                 IconButton(
                   icon: Icon(FontAwesomeIcons.instagram),
-                  onPressed: () {},
+                  onPressed: () {
+                                        launchMyUli('https://www.instagram.com/momen_yosri');
+
+                  },
                   iconSize: 30.sp,
                   color: Theme.of(context).textTheme.bodyLarge!.color,
                 ),
@@ -186,7 +190,10 @@ class HotelDetailsPage extends StatelessWidget {
                   icon: Icon(FontAwesomeIcons.twitter),
                   iconSize: 30.sp,
                   color: Theme.of(context).textTheme.bodyLarge!.color,
-                  onPressed: () {},
+                  onPressed: () {
+                                        launchMyUli('https://x.com/momen_yosri?s=90');
+
+                  },
                 ),
               ],
             ),
@@ -194,5 +201,15 @@ class HotelDetailsPage extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+void launchMyUli(String url) async {
+  final Uri _url = Uri.parse(url);
+  bool canLaunch = await canLaunchUrl(_url);
+  if (canLaunch) {
+    launchUrlString(url);
+    launchUrl(_url);
+  } else {
+    print('cannot launch');
   }
 }

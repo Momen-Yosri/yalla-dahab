@@ -6,6 +6,8 @@ import 'package:yalla_dahab/core/style/app_colors.dart';
 import 'package:provider/provider.dart';
 import 'package:yalla_dahab/views/settings/edit_profile_screen.dart';
 
+import '../home/widgets/custom_drawer.dart';
+
 class SettingsScreen extends StatefulWidget {
   static const String routeName = 'settings';
   const SettingsScreen({super.key});
@@ -26,6 +28,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         title: Text("Settings",
            )
       ),
+      drawer: CustomDrawer(),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: Column(

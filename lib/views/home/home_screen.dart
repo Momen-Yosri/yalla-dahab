@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yalla_dahab/views/home/widgets/category_button.dart';
-import 'widgets/custom_navigation_bar.dart';
+import 'package:yalla_dahab/views/home/widgets/custom_drawer.dart';
+import 'package:yalla_dahab/views/hotels/hotel_deitals_screen.dart';
+import 'package:yalla_dahab/views/restaurant/resturtrant_deitals.dart';
+import 'package:yalla_dahab/views/trips/trip_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = "HomeScreen";
@@ -16,11 +19,15 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   late TabController _tabController;
   String selectedCategory = "All";
 
-  final List<Map<String, dynamic>> popularPlaces = [
-    {"name": "Retac Qunay", "image": "assets/images/hotel_list1.jpg", "rating": 4.8},
-    {"name": "Alley Palace", "image": "assets/images/hotel_list2.jpg", "rating": 4.1},
-    {"name": "Sheraton", "image": "assets/images/hotel_list3.jpg", "rating": 4.3},
-    {"name": "Semiramis", "image": "assets/images/hotel_list4.jpg", "rating": 4.5},
+  final List<Map<String, dynamic>> allPlaces = [
+    {"name": "Retac Qunay", "image": "assets/images/hotel_list1.jpg", "rating": 4.8, "category": "Hotels"},
+    {"name": "Alley Palace", "image": "assets/images/hotel_list2.jpg", "rating": 4.1, "category": "Hotels"},
+    {"name": "Sheraton", "image": "assets/images/hotel_list3.jpg", "rating": 4.3, "category": "Hotels"},
+    {"name": "Semiramis", "image": "assets/images/hotel_list4.jpg", "rating": 4.5, "category": "Hotels"},
+    {"name": "Sea Breeze", "image": "assets/images/restaurant1.jpg", "rating": 4.2, "category": "Restaurants"},
+    {"name": "Lagoon Cafe", "image": "assets/images/restaurant2.jpg", "rating": 4.0, "category": "Restaurants"},
+    {"name": "Golden Beach", "image": "assets/images/tourism1.jpg", "rating": 4.7, "category": "Tourism"},
+    {"name": "Blue Lagoon", "image": "assets/images/tourism2.jpg", "rating": 4.6, "category": "Tourism"},
   ];
 
   final List<Map<String, dynamic>> categories = [
@@ -47,148 +54,137 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     super.dispose();
   }
 
+  void _navigateBasedOnCategory(BuildContext context, Map<String, dynamic> place) {
+    switch (place["category"]) {
+      case "Hotels":
+        Navigator.pushNamed(
+          context,
+HotelDetailsPage.routeName,
+          arguments: place, // Pass the place data if needed
+        );
+        break;
+      case "Restaurants":
+        Navigator.pushNamed(
+          context,
+          RestaurantDetailScreen.routeName, // Replace with your actual route name
+          arguments: place,
+        );
+        break;
+      case "Tourism":
+        Navigator.pushNamed(
+          context,
+          TripDetailsScreen.routeName, // Replace with your actual route name
+          arguments: place,
+        );
+        break;
+    }
+  }
+
+  List<Map<String, dynamic>> getFilteredPlaces() {
+    if (selectedCategory == "All") {
+      return allPlaces;
+    } else {
+      return allPlaces.where((place) => place["category"] == selectedCategory).toList();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CustomBottomNavigationBar(),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 20.h),
-
-              // User Profile
-              Center(
-                child: Column(
-                  children: [
-                    CircleAvatar(
-                      radius: 40,
-                      backgroundColor: Colors.grey[300],
-                      child: Icon(Icons.person, size: 40, color: Colors.white),
-                    ),
-                    SizedBox(height: 8.h),
-                    Text(
-                      "Hi, (User name)",
-                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w400,
-                          ),
-                    ),
-                  ],
+      appBar: AppBar(title: Text("Home")),
+      drawer: CustomDrawer(),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          TabBar(
+            controller: _tabController,
+            indicatorColor: Colors.blue,
+            labelPadding: EdgeInsets.symmetric(horizontal: 10.w),
+            tabs: categories.map((category) {
+              return Tab(
+                child: CategoryButton(
+                  icon: category["icon"],
+                  label: category["label"],
+                  isSelected: selectedCategory == category["label"],
                 ),
-              ),
+              );
+            }).toList(),
+            isScrollable: true,
+          ),
 
-              SizedBox(height: 16.h),
+          SizedBox(height: 16.h),
 
-              // Search Bar
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 12),
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: TextField(
-                  decoration: InputDecoration(
-                    icon: Icon(Icons.search, color: Colors.grey),
-                    hintText: "Search",
-                    border: InputBorder.none,
-                    suffixIcon: Icon(Icons.clear, color: Colors.grey),
-                  ),
-                ),
-              ),
-
-              SizedBox(height: 16.h),
-
-              // Category Filters
-              TabBar(
-                controller: _tabController,
-                indicatorColor: Colors.blue,
-                labelPadding: EdgeInsets.symmetric(horizontal: 10.w),
-                tabs: categories.map((category) {
-                  return Tab(
-                    child: CategoryButton(
-                      icon: category["icon"],
-                      label: category["label"],
-                      isSelected: selectedCategory == category["label"],
-                    ),
-                  );
-                }).toList(),
-                isScrollable: true,
-                tabAlignment: TabAlignment.start,
-              ),
-
-              SizedBox(height: 16),
-
-              // Popular Places Section
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Popular Places", style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 22.sp, fontWeight: FontWeight.w700)),
-                  Text("View all", style: TextStyle(fontSize: 14.sp, color: Colors.blue, fontWeight: FontWeight.w600)),
-                ],
-              ),
-
-              SizedBox(height: 24.h),
-
-              // Popular Places Grid
-              GridView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+          Expanded(
+            child: Padding(
+              padding: REdgeInsets.symmetric(horizontal: 16.w),
+              child: GridView.builder(
+                padding: EdgeInsets.only(top: 8.h),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
                   childAspectRatio: 0.85,
                 ),
-                itemCount: popularPlaces.length,
+                itemCount: getFilteredPlaces().length,
                 itemBuilder: (context, index) {
-                  final place = popularPlaces[index];
-                  return _placeCard(place["image"], place["name"], place["rating"]);
+                  final place = getFilteredPlaces()[index];
+                  return _placeCard(context, place);
                 },
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
 
-  // Popular Place Card
-  Widget _placeCard(String imageUrl, String name, double rating) {
-    return Stack(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(12.r),
-          child: Image.asset(imageUrl, width: double.infinity, height: double.infinity, fit: BoxFit.cover),
-        ),
-        Positioned(
-          bottom: 10.h,
-          left: 10.w,
-          right: 10.w,
-          child: Container(
-            padding: REdgeInsets.symmetric(vertical: 4.r, horizontal: 8.h),
-            decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.6),
-              borderRadius: BorderRadius.circular(8.r),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(name, style: TextStyle(color: Colors.white, fontSize: 12.sp)),
-                Row(
-                  children: [
-                    Icon(Icons.star, color: Colors.amber, size: 14),
-                    SizedBox(width: 4.w),
-                    Text(rating.toString(), style: TextStyle(color: Colors.white, fontSize: 12.sp)),
-                  ],
-                ),
-              ],
+  Widget _placeCard(BuildContext context, Map<String, dynamic> place) {
+    return InkWell(
+      onTap: () => _navigateBasedOnCategory(context, place),
+      child: Stack(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(12.r),
+            child: Image.asset(
+              place["image"],
+              width: double.infinity,
+              height: double.infinity,
+              fit: BoxFit.cover,
             ),
           ),
-        ),
-      ],
+          Positioned(
+            bottom: 10.h,
+            left: 10.w,
+            right: 10.w,
+            child: Container(
+              padding: REdgeInsets.symmetric(vertical: 4.r, horizontal: 8.h),
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.6),
+                borderRadius: BorderRadius.circular(8.r),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    place["name"],
+                    style: TextStyle(color: Colors.white, fontSize: 12.sp),
+                  ),
+                  Row(
+                    children: [
+                      Icon(Icons.star, color: Colors.amber, size: 14),
+                      SizedBox(width: 4.w),
+                      Text(
+                        place["rating"].toString(),
+                        style: TextStyle(color: Colors.white, fontSize: 12.sp),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
