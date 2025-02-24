@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yalla_dahab/core/provider/app_configration.dart';
 import 'package:yalla_dahab/views/authentication/register/register_screen.dart';
@@ -15,12 +16,19 @@ import 'views/settings/settings_screen.dart';
 import 'views/splash/splash_screen.dart';
 import 'views/trips/trip_screen.dart';
 import 'package:provider/provider.dart';
-
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  // Lock the app in portrait mode
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]).then((_){
+
   runApp(ChangeNotifierProvider(
       create: (context) => AppConfigurationProvider(), child: MyApp()));
-}
-
+});
+  }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -53,7 +61,7 @@ class MyApp extends StatelessWidget {
                   RestaurantDetailScreen(),
               SettingsScreen.routeName: (context) => SettingsScreen(),
             },
-            theme: MyThemeData.darkTheme,
+            theme: MyThemeData.lightTheme,
             darkTheme: MyThemeData.darkTheme,
             themeMode: provider.currentThemeMode,
            

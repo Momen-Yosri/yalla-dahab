@@ -29,57 +29,60 @@ class _SettingsScreenState extends State<SettingsScreen> {
            )
       ),
       drawer: CustomDrawer(),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 20.h),
-
-            // Profile Avatar
-            Center(
-              child: Column(
-                children: [
-                  CircleAvatar(
-                    radius: 75.r,
-                    backgroundColor: Colors.blue[100],
-                    child: Icon(Icons.person, size: 100.sp, color: Colors.blue),
-                  ),
-                  SizedBox(height: 10.h),
-                  Text("John Doe",
-                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 20.sp,fontWeight: FontWeight.bold),),
-                ],
+      body:  SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 20.h),
+        
+              // Profile Avatar
+              Center(
+                child: Column(
+                  children: [
+                    CircleAvatar(
+                      radius: 75.r,
+                      backgroundColor: Colors.blue[100],
+                      child: Icon(Icons.person, size: 100.sp, color: Colors.blue),
+                    ),
+                    SizedBox(height: 10.h),
+                    Text("John Doe",
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 20.sp,fontWeight: FontWeight.bold),),
+                  ],
+                ),
               ),
-            ),
-
-            SizedBox(height: 30.h),
-
-            // Personal Information Section
-Text('Personal Information',style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 15.sp,fontWeight: FontWeight.bold),),
-            settingsTile(
-              icon: FontAwesomeIcons.pencil,
-              title: "Edit Profile",
-              onTap: () {
-                Navigator.pushNamed(context, EditProfileScreen.routeName);
-              },
-            ),
-
-            SizedBox(height: 10.h),
-
-            // Dark Mode Section
-            sectionTitle("Dark Mode"),
-            darkModeToggle(provider),
-
-            SizedBox(height: 10.h),
-
-            // Logout Section
-            settingsTile(
-              icon: FontAwesomeIcons.signOutAlt,
-              title: "Log Out",
-              subtitle: "Sign out of your account",
-              onTap: () {},
-            ),
-          ],
+        
+              SizedBox(height: 30.h),
+        
+              // Personal Information Section
+        Text('Personal Information',style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 15.sp,fontWeight: FontWeight.bold),),
+              settingsTile(
+                icon: FontAwesomeIcons.pencil,
+                title: "Edit Profile",
+                onTap: () {
+                  Navigator.pushNamed(context, EditProfileScreen.routeName);
+                },
+              ),
+        
+              SizedBox(height: 10.h),
+        
+              // Dark Mode Section
+              sectionTitle("Dark Mode"),
+              darkModeToggle(provider),
+        
+              SizedBox(height: 10.h),
+        
+              // Logout Section
+              settingsTile(
+                icon: FontAwesomeIcons.signOutAlt,
+                title: "Log Out",
+                subtitle: "Sign out of your account",
+                onTap: () {},
+              ),
+            ],
+          ),
         ),
       ),
     );

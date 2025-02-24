@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yalla_dahab/views/home/home_screen.dart';
 
+import '../../../core/style/app_colors.dart';
 import '../register/register_screen.dart';
 import '../widgets/custom_text_field.dart';
 class LoginScreenView extends StatelessWidget {
@@ -42,7 +43,7 @@ class LoginScreenView extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 child: TextButton(
                   onPressed: () {},
-                  child: Text("Forgot password?", style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 14.sp),),
+                  child: Text("Forgot password?", style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 14.sp,color:  AppColors.primary),),
                 ),
               ),
               SizedBox(height: 16.h),
@@ -93,7 +94,7 @@ class LoginScreenView extends StatelessWidget {
                       Navigator.pushNamed(context, RegisterScreen.routeName);
                     },
                     child: Text(' Sign up',style: TextStyle(
-                            color: Colors.blue,
+                            color:  AppColors.primary,
                             fontWeight: FontWeight.bold,
                           ),),
                   ),

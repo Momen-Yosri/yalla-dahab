@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yalla_dahab/views/home/widgets/custom_radio_button.dart';
 
+import '../../../core/style/app_colors.dart';
 import '../login/login_screen.dart';
 import '../widgets/custom_text_field.dart';
 
@@ -110,7 +111,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       Navigator.pushNamed(context, LoginScreenView.routeName);
                     },
                     child: Text(' Log in',style: TextStyle(
-                            color: Colors.blue,
+                            color:  AppColors.primary,
                             fontWeight: FontWeight.bold,
                           ),),
                   ),

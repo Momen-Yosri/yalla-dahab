@@ -6,6 +6,8 @@ import 'package:yalla_dahab/views/hotels/hotel_deitals_screen.dart';
 import 'package:yalla_dahab/views/restaurant/resturtrant_deitals.dart';
 import 'package:yalla_dahab/views/trips/trip_screen.dart';
 
+import '../../core/style/app_colors.dart';
+
 class HomeScreen extends StatefulWidget {
   static const String routeName = "HomeScreen";
 
@@ -18,6 +20,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
   late TabController _tabController;
   String selectedCategory = "All";
+  String searchQuery = "";
+
+  final TextEditingController _searchController = TextEditingController();
 
   final List<Map<String, dynamic>> allPlaces = [
     {"name": "Retac Qunay", "image": "assets/images/hotel_list1.jpg", "rating": 4.8, "category": "Hotels"},
@@ -51,58 +56,90 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   @override
   void dispose() {
     _tabController.dispose();
+    _searchController.dispose();
     super.dispose();
   }
 
   void _navigateBasedOnCategory(BuildContext context, Map<String, dynamic> place) {
     switch (place["category"]) {
       case "Hotels":
-        Navigator.pushNamed(
-          context,
-HotelDetailsPage.routeName,
-          arguments: place, // Pass the place data if needed
-        );
+        Navigator.pushNamed(context, HotelDetailsPage.routeName, arguments: place);
         break;
       case "Restaurants":
-        Navigator.pushNamed(
-          context,
-          RestaurantDetailScreen.routeName, // Replace with your actual route name
-          arguments: place,
-        );
+        Navigator.pushNamed(context, RestaurantDetailScreen.routeName, arguments: place);
         break;
       case "Tourism":
-        Navigator.pushNamed(
-          context,
-          TripDetailsScreen.routeName, // Replace with your actual route name
-          arguments: place,
-        );
+        Navigator.pushNamed(context, TripDetailsScreen.routeName, arguments: place);
         break;
     }
   }
 
   List<Map<String, dynamic>> getFilteredPlaces() {
-    if (selectedCategory == "All") {
-      return allPlaces;
-    } else {
-      return allPlaces.where((place) => place["category"] == selectedCategory).toList();
+    List<Map<String, dynamic>> filtered = allPlaces;
+
+    if (selectedCategory != "All") {
+      filtered = filtered.where((place) => place["category"] == selectedCategory).toList();
     }
+
+    if (searchQuery.isNotEmpty) {
+      filtered = filtered.where((place) => place["name"].toLowerCase().contains(searchQuery.toLowerCase())).toList();
+    }
+
+    return filtered;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Home")),
-      drawer: CustomDrawer(),
+      appBar: AppBar(title: const Text("Home")),
+      drawer: const CustomDrawer(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TabBar(
+          // Search Bar
+          Padding(
+            padding: REdgeInsets.all(16),
+            child: TextField(
+              controller: _searchController,
+              onChanged: (value) {
+                setState(() {
+                  searchQuery = value;
+                });
+              },
+              decoration: InputDecoration(
+                hintText: "Search",
+                prefixIcon: const Icon(Icons.search,color:  AppColors.primary,),
+                suffixIcon: searchQuery.isNotEmpty
+                    ? IconButton(
+                        icon: const Icon(Icons.close),
+                        onPressed: () {
+                          setState(() {
+                            _searchController.clear();
+                            searchQuery = "";
+                          });
+                        },
+                      )
+                    : null,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12.r),
+                  borderSide: const BorderSide(color: AppColors.primary),
+                ),
+                focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12.r),
+        borderSide: BorderSide(color: AppColors.primary, width: 2), )
+              ),
+            ),
+          ),
+
+          // Category Tabs
+          TabBar(tabAlignment: TabAlignment.start,
             controller: _tabController,
-            indicatorColor: Colors.blue,
+            indicatorColor: Color(0xff05C0FF),
             labelPadding: EdgeInsets.symmetric(horizontal: 10.w),
             tabs: categories.map((category) {
-              return Tab(
+              return Tab( 
                 child: CategoryButton(
+
                   icon: category["icon"],
                   label: category["label"],
                   isSelected: selectedCategory == category["label"],
@@ -110,16 +147,18 @@ HotelDetailsPage.routeName,
               );
             }).toList(),
             isScrollable: true,
+
           ),
 
           SizedBox(height: 16.h),
 
+          // Grid View for Places
           Expanded(
             child: Padding(
               padding: REdgeInsets.symmetric(horizontal: 16.w),
               child: GridView.builder(
                 padding: EdgeInsets.only(top: 8.h),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
@@ -171,7 +210,7 @@ HotelDetailsPage.routeName,
                   ),
                   Row(
                     children: [
-                      Icon(Icons.star, color: Colors.amber, size: 14),
+                      const Icon(Icons.star, color: Colors.amber, size: 14),
                       SizedBox(width: 4.w),
                       Text(
                         place["rating"].toString(),
