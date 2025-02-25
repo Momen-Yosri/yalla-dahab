@@ -116,15 +116,13 @@ class RestaurantDetailScreen extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(16.r),
               child: Image.asset(
-                "assets/images/location.png", // Replace with actual map image
+                "assets/images/location.png", //! Replace with actual map image from the model
                 height: 200.h,
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),
             ),
             SizedBox(height: 10.h),
-
-            // Get Directions Button
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(

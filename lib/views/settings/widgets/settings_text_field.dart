@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../core/style/app_colors.dart';
+
 class SettingsTextField extends StatelessWidget {
   final String label;
   final String hint;
@@ -18,6 +20,9 @@ class SettingsTextField extends StatelessWidget {
         SizedBox(height: 5.h),
         TextField(
           decoration: InputDecoration(
+            focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12.r),
+        borderSide: BorderSide(color: AppColors.primary, width: 2), ),
             hintText: hint,
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r)),
             contentPadding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 14.h),
